@@ -10,3 +10,7 @@ Agregar automáticamente la información de la página web a campos prerequisita
 En comparativa de precio añadir el paso por puntos intermedios 
 
 
+
+#link de la presentación: https://www.canva.com/design/DAGKM3JhriQ/wRB1EmCFdGJNa6FDx7iFAQ/edit?utm_content=DAGKM3JhriQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+
