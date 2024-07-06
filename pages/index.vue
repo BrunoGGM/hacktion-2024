@@ -43,7 +43,7 @@
         </draggable>
         <button
           v-if="selectedPlaces.length > 0"
-          class="btn btn-primary"
+          class="btn btn-secondary"
           @click="viewRoute = true"
         >
           Calcular Costo
@@ -57,9 +57,9 @@
         <span class="text-2xl font-bold">Ruta</span>
         <div v-if="viewRoute">
           <ul class="steps steps-vertical">
-            <li class="step step-primary">Inicio: Hotel</li>
+            <li class="step step-accent">Inicio: Hotel</li>
             <li
-              class="step step-primary"
+              class="step step-accent"
               v-for="(place, index) in selectedPlaces"
               :key="index"
             >
@@ -75,12 +75,16 @@
                 </div>
               </div>
             </li>
-            <li class="step step-primary">Fin: Hotel</li>
+            <li class="step step-accent">Fin: Hotel</li>
           </ul>
           <div class="text-2xl font-bold text-center mt-4 rounded-lg p-2">
             Costo total: ${{ Math.floor(Math.random() * 100) }}
           </div>
-
+          <div class="flex flex-col items-center justify-center w-full">
+            <button class="btn btn-primary mt-4 w-full">
+              Guardar ruta en Notion
+            </button>
+          </div>
           <iframe
             class="w-full mt-4 rounded-lg"
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25924.28262226077!2d139.74466958843215!3d35.68844201873905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smx!4v1720307891810!5m2!1sen!2smx"
