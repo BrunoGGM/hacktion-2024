@@ -2,12 +2,14 @@
 
 #MVP
 
-Calculadora de transporte entre rutas de tren de japon
-Comparativa entre alternativas, precio, tiempo.
+Calculadora de transporte entre lugares por visitar en Japon
+Visualización del itinerario.
 
 #proyecto a futuro
+
 Agregar automáticamente la información de la página web a campos prerequisitados en la base de datos de notion 
-En comparativa de precio añadir el paso por puntos intermedios 
+
+modificación a tiempo real de las rutas tanto para eliminarlas como para moverlas de dia 
 
 
 
