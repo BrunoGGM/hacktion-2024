@@ -5,10 +5,16 @@
     >
       <div class="card-body p-0">
         <span class="text-2xl font-bold">Destinos</span>
+        <input
+          type="text"
+          placeholder="Buscar destino"
+          v-model="search"
+          class="input input-bordered w-full w-full"
+        />
 
         <draggable
           class="list-group"
-          :list="places"
+          :list="filteredPlaces"
           group="places"
           @change="log"
           itemKey="id"
@@ -107,6 +113,15 @@ const notionStore = useNotionStore();
 const places = computed(() => notionStore.places.results);
 const selectedPlaces = ref([]);
 const viewRoute = ref(false);
+const search = ref("");
+
+const filteredPlaces = computed(() => {
+  return places.value.filter((place) => {
+    return place.properties.Place.title[0].text.content
+      .toLowerCase()
+      .includes(search.value.toLowerCase());
+  });
+});
 
 const log = (event) => {
   console.log(event);
