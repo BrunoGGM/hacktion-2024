@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h1>
-      Hacktion
-    </h1>
+    <NuxtLayout>
+      <NuxtLoadingIndicator />
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
+
+<script setup>
+
+</script>

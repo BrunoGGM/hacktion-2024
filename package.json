@@ -10,13 +10,19 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "nuxt": "^3.12.3",
-    "vue": "latest"
+    "pinia": "^2.1.7",
+    "vue": "latest",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
     "daisyui": "^4.12.10",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
