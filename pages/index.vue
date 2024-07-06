@@ -1,105 +1,114 @@
 <template>
-  <div class="grid grid-cols-12 gap-4 p-6">
-    <div
-      class="card bg-base-100 col-span-12 md:col-span-4 shadow-xl min-h-screen"
-    >
-      <div class="card-body p-0">
-        <span class="text-2xl font-bold">Destinos</span>
-        <input
-          type="text"
-          placeholder="Buscar destino"
-          v-model="search"
-          class="input input-bordered w-full w-full"
-        />
+  <div>
+    <div class="px-6">
+      <img
+        class="w-16 h-16 mt-4"
+        src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+        alt=""
+      />
+    </div>
+    <div class="grid grid-cols-12 gap-4 p-6">
+      <div
+        class="card bg-base-100 col-span-12 md:col-span-4 shadow-xl min-h-screen"
+      >
+        <div class="card-body p-0">
+          <span class="text-2xl font-bold">Destinos</span>
+          <input
+            type="text"
+            placeholder="Buscar destino"
+            v-model="search"
+            class="input input-bordered w-full w-full"
+          />
 
-        <draggable
-          class="list-group"
-          :list="filteredPlaces"
-          group="places"
-          @change="log"
-          itemKey="id"
-        >
-          <template #item="{ element, index }">
-            <div class="list-group-item">
-              {{ element.properties.Place.title[0].text.content }}
-            </div>
-          </template>
-        </draggable>
-      </div>
-    </div>
-    <div
-      class="card bg-base-100 col-span-12 md:col-span-4 shadow-xl min-h-screen"
-    >
-      <div class="card-body p-0">
-        <span class="text-2xl font-bold"> Itinerario </span>
-        <draggable
-          class="list-group"
-          :list="selectedPlaces"
-          group="places"
-          @change="log"
-          itemKey="id"
-          @add="addPlace"
-        >
-          <template #item="{ element, index }">
-            <div class="list-group-item">
-              {{ index + 1 }} -
-              {{ element.properties.Place.title[0].text.content }}
-            </div>
-          </template>
-        </draggable>
-        <button
-          v-if="selectedPlaces.length > 0"
-          class="btn btn-secondary"
-          @click="viewRoute = true"
-        >
-          Calcular Costo
-        </button>
-      </div>
-    </div>
-    <div
-      class="card bg-base-100 col-span-12 md:col-span-4 shadow-xl min-h-screen"
-    >
-      <div class="card-body py-2">
-        <span class="text-2xl font-bold">Ruta</span>
-        <div v-if="viewRoute">
-          <ul class="steps steps-vertical">
-            <li class="step step-accent">Inicio: Hotel</li>
-            <li
-              class="step step-accent"
-              v-for="(place, index) in selectedPlaces"
-              :key="index"
-            >
-              <div
-                class="flex flex-col items-start justify-between w-full p-2 bg-base-200 rounded-lg"
-              >
-                <div>{{ place.properties.Place.title[0].text.content }}</div>
-                <div class="text-xs">
-                  Costo aproximado: ${{ Math.floor(Math.random() * 100) }}
-                </div>
-                <div class="text-xs">
-                  Duración: {{ Math.floor(Math.random() * 10) }} minutos
-                </div>
+          <draggable
+            class="list-group"
+            :list="filteredPlaces"
+            group="places"
+            @change="log"
+            itemKey="id"
+          >
+            <template #item="{ element, index }">
+              <div class="list-group-item">
+                {{ element.properties.Place.title[0].text.content }}
               </div>
-            </li>
-            <li class="step step-accent">Fin: Hotel</li>
-          </ul>
-          <div class="text-2xl font-bold text-center mt-4 rounded-lg p-2">
-            Costo total: ${{ Math.floor(Math.random() * 100) }}
+            </template>
+          </draggable>
+        </div>
+      </div>
+      <div
+        class="card bg-base-100 col-span-12 md:col-span-4 shadow-xl min-h-screen"
+      >
+        <div class="card-body p-0">
+          <span class="text-2xl font-bold"> Itinerario </span>
+          <draggable
+            class="list-group"
+            :list="selectedPlaces"
+            group="places"
+            @change="log"
+            itemKey="id"
+            @add="addPlace"
+          >
+            <template #item="{ element, index }">
+              <div class="list-group-item">
+                {{ index + 1 }} -
+                {{ element.properties.Place.title[0].text.content }}
+              </div>
+            </template>
+          </draggable>
+          <button
+            v-if="selectedPlaces.length > 0"
+            class="btn btn-secondary"
+            @click="viewRoute = true"
+          >
+            Calcular Costo
+          </button>
+        </div>
+      </div>
+      <div
+        class="card bg-base-100 col-span-12 md:col-span-4 shadow-xl min-h-screen"
+      >
+        <div class="card-body py-2">
+          <span class="text-2xl font-bold">Ruta</span>
+          <div v-if="viewRoute">
+            <ul class="steps steps-vertical">
+              <li class="step step-accent">Inicio: Hotel</li>
+              <li
+                class="step step-accent"
+                v-for="(place, index) in selectedPlaces"
+                :key="index"
+              >
+                <div
+                  class="flex flex-col items-start justify-between w-full p-2 bg-base-200 rounded-lg"
+                >
+                  <div>{{ place.properties.Place.title[0].text.content }}</div>
+                  <div class="text-xs">
+                    Costo aproximado: ${{ Math.floor(Math.random() * 100) }}
+                  </div>
+                  <div class="text-xs">
+                    Duración: {{ Math.floor(Math.random() * 10) }} minutos
+                  </div>
+                </div>
+              </li>
+              <li class="step step-accent">Fin: Hotel</li>
+            </ul>
+            <div class="text-2xl font-bold text-center mt-4 rounded-lg p-2">
+              Costo total: ${{ Math.floor(Math.random() * 100) }}
+            </div>
+            <div class="flex flex-col items-center justify-center w-full">
+              <button class="btn btn-primary mt-4 w-full">
+                Guardar ruta en Notion
+              </button>
+            </div>
+            <iframe
+              class="w-full mt-4 rounded-lg"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25924.28262226077!2d139.74466958843215!3d35.68844201873905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smx!4v1720307891810!5m2!1sen!2smx"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
-          <div class="flex flex-col items-center justify-center w-full">
-            <button class="btn btn-primary mt-4 w-full">
-              Guardar ruta en Notion
-            </button>
-          </div>
-          <iframe
-            class="w-full mt-4 rounded-lg"
-            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25924.28262226077!2d139.74466958843215!3d35.68844201873905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smx!4v1720307891810!5m2!1sen!2smx"
-            height="450"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
         </div>
       </div>
     </div>
